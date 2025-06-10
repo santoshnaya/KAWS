@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ChevronRight } from 'lucide-react'
 
 interface Chapter {
@@ -55,7 +56,7 @@ export default function TableOfContents() {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
-    const cards = cardsRef.current.filter(Boolean)
+    const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[]
     
     gsap.fromTo(
       cards,
@@ -99,7 +100,7 @@ export default function TableOfContents() {
           {chapters.map((chapter, index) => (
             <div
               key={chapter.id}
-              ref={el => cardsRef.current[index] = el}
+              ref={el => { cardsRef.current[index] = el }}
               onClick={() => handleChapterClick(chapter.id)}
               className="group relative bg-secondary border-2 border-gray-200 rounded-3xl p-8 cursor-pointer hover:border-primary hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               style={{

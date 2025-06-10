@@ -31,8 +31,9 @@ export default function Navigation() {
 
       sections.forEach((section, index) => {
         if (section) {
-          const sectionTop = (section as HTMLElement).offsetTop
-          const sectionBottom = sectionTop + (section as HTMLElement).offsetHeight
+          const element = section as HTMLElement
+          const sectionTop = element.offsetTop
+          const sectionBottom = sectionTop + element.offsetHeight
 
           if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
             setActiveSection(navItems[index].id)

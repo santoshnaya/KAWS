@@ -34,8 +34,8 @@ export default function Home() {
     })
 
     // Section reveal animations
-    const sections = gsap.utils.toArray('.section-reveal')
-    sections.forEach((section) => {
+    const sections = gsap.utils.toArray('.section-reveal') as HTMLElement[]
+    sections.forEach((section: HTMLElement) => {
       gsap.fromTo(
         section,
         { opacity: 0, y: 100 },

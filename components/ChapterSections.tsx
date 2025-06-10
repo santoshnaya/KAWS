@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import { Play } from 'lucide-react'
 
@@ -77,9 +78,9 @@ export default function ChapterSections() {
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
-    const chapters = chapterRefs.current.filter(Boolean)
+    const chapters = chapterRefs.current.filter(Boolean) as HTMLDivElement[]
     
-    chapters.forEach((chapter) => {
+    chapters.forEach((chapter: HTMLDivElement) => {
       gsap.fromTo(
         chapter,
         { opacity: 0, y: 100 },
@@ -109,7 +110,7 @@ export default function ChapterSections() {
           <div
             key={chapter.id}
             id={`chapter-${chapter.id}`}
-            ref={el => chapterRefs.current[index] = el}
+            ref={el => { chapterRefs.current[index] = el }}
             className="mb-32 last:mb-0"
           >
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
